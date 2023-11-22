@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('World Time'),
+        title: const Text('World Time'),
         centerTitle: true,
         backgroundColor: Colors.red[300],
       ),
