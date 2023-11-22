@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: Home()
-  ));
-
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const MaterialApp(home: Home()),
+    ),
+  );
 }
 
-class Home  extends StatelessWidget {
-  const Home ({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,17 +27,14 @@ class Home  extends StatelessWidget {
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
               letterSpacing: 2.0,
-              color: Colors.grey[600]
-          ),
+              color: Colors.grey[600]),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {  },
-        child: Text('click'),
+        onPressed: () {},
         backgroundColor: Colors.red[300],
+        child: const Text('click'),
       ),
     );
   }
 }
-
-
