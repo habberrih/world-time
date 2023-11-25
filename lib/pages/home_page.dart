@@ -10,9 +10,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Text('Home Screen'),
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          TextButton.icon(
+            onPressed: () {
+              Navigator.pushNamed(context, '/location');
+            },
+            icon: const Icon(Icons.edit_location),
+            label: const Text('Edit location'),
+          )
+        ],
       ),
     );
   }
