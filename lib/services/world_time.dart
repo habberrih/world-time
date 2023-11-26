@@ -18,7 +18,7 @@ class WorldTime {
     required this.url,
   });
 
-  Future<void> getTime() async {
+  Future<String?> getTime() async {
     try {
       String uri = 'https://worldtimeapi.org/api/timezone/$url';
 
@@ -34,10 +34,12 @@ class WorldTime {
       DateTime now = dataObject.setTimeDate(dataObject.dateTime);
 
       now = now.add(Duration(hours: int.parse(dataObject.offset)));
-      isDayTime = now.hour > 6 && now.hour < 20 ? true : false;
+      isDayTime = now.hour > 6 && now.hour < 18 ? true : false;
       time = DateFormat.jm().format(now);
+      return time;
     } catch (e) {
       time = 'Could not get time';
     }
+    return null;
   }
 }
