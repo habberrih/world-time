@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:world_time/pages/home_page.dart';
 
 import '../services/world_time.dart';
 
@@ -14,19 +15,19 @@ class _LoadingState extends State<Loading> {
   void setupWorldTime() async {
     WorldTime worldTime =
         WorldTime(location: 'Libya', flag: 'assets', url: 'Africa/Tripoli');
-    await worldTime.getTime();
+    String? time = await worldTime.getTime();
 
     if (!context.mounted) return;
 
-    Navigator.pushReplacementNamed(
+    Navigator.push(
       context,
-      '/home',
-      arguments: {
-        'location': worldTime.location,
-        'flag': worldTime.flag,
-        'time': worldTime.time,
-        'isDayTime': worldTime.isDayTime
-      },
+      MaterialPageRoute(
+          builder: (context) => HomePage(
+                flag: worldTime.flag,
+                location: worldTime.location,
+                isDayTime: worldTime.isDayTime!,
+                time: time!,
+              )),
     );
   }
 
