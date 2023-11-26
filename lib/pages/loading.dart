@@ -22,12 +22,13 @@ class _LoadingState extends State<Loading> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => HomePage(
-                flag: worldTime.flag,
-                location: worldTime.location,
-                isDayTime: worldTime.isDayTime!,
-                time: time!,
-              )),
+        builder: (context) => HomePage(
+          flag: worldTime.flag,
+          location: worldTime.location,
+          isDayTime: worldTime.isDayTime!,
+          time: time!,
+        ),
+      ),
     );
   }
 
