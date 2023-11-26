@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  String flag;
+  String location;
+  String time;
+  bool isDayTime;
+
+  HomePage(
+      {required this.flag,
+      required this.location,
+      required this.time,
+      required this.isDayTime,
+      super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -11,19 +22,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     //! fix: returning null at first, then return the data;
-    var arguments = ModalRoute.of(context)?.settings.arguments;
-    Map? data;
-    String bgImage = '';
-    Color bgColor = Colors.red;
-    if (arguments != null) {
-      data = arguments as Map?;
-      print(data);
-      bgImage = data?['isDayTime'] ? 'day.png' : 'night.png';
-      bgColor = (data?['isDayTime'] ? Colors.blue : Colors.indigo[700])!;
-    } else {
-      arguments = 'Sorry';
-    }
-    bgImage = bgImage ?? 'error.png';
+    String bgImage;
+    Color bgColor;
+
+    bgImage = widget.isDayTime ? 'day.png' : 'night.png';
+    bgColor = (widget.isDayTime ? Colors.blue : Colors.indigo[700])!;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -59,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      data != null ? data['location'] : arguments,
+                      widget.location,
                       style: const TextStyle(
                         fontSize: 28.0,
                         letterSpacing: 2.0,
@@ -72,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                   height: 20.0,
                 ),
                 Text(
-                  data != null ? data['time'] : arguments,
+                  widget.time,
                   style: const TextStyle(
                     fontSize: 66.0,
                     color: Colors.white,
